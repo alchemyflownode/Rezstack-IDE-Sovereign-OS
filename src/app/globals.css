@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -348,4 +348,78 @@
 
 .pulse-glow {
   animation: pulse-glow 2s infinite;
+}
+
+/* ============================================================================
+   SOVEREIGN SPLITTER - RESIZABLE PANELS
+   ============================================================================ */
+
+/* Splitter base styles */
+.splitter {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Splitter handle animations */
+@keyframes pulse-glow-splitter {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.3), 0 0 10px rgba(6, 182, 212, 0.2);
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), rgba(6, 182, 212, 0.3));
+  }
+  50% { 
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6), 0 0 25px rgba(6, 182, 212, 0.4);
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.6), rgba(6, 182, 212, 0.6));
+  }
+}
+
+.splitter:hover .splitter-handle {
+  animation: pulse-glow-splitter 2s infinite;
+}
+
+/* Splitter themes */
+.splitter.vertical .splitter-handle {
+  width: 6px;
+  height: 100%;
+}
+
+.splitter.horizontal .splitter-handle {
+  height: 6px;
+  width: 100%;
+}
+
+/* Glow intensity variants */
+.shadow-glow-purple-low {
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.shadow-glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+}
+
+.shadow-glow-purple-intense {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.2);
+}
+
+.shadow-glow-cyan {
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+/* Custom cursors */
+.cursor-col-resize {
+  cursor: col-resize;
+}
+
+.cursor-row-resize {
+  cursor: row-resize;
+}
+
+/* Splitter active state */
+.splitter:active .splitter-handle {
+  transform: scale(1.1);
+  transition: transform 0.1s ease;
+}
+
+/* Dark mode enhancements */
+.dark .splitter-handle {
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.5), rgba(6, 182, 212, 0.5));
 }
