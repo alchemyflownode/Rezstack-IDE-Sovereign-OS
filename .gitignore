@@ -1,48 +1,84 @@
-﻿# dependencies
+﻿# 🦊 SOVEREIGN STACK - PROFESSIONAL .GITIGNORE
+# Built for RezCode v3.5
+
+# --- Dependencies ---
 node_modules/
 .pnp
 .pnp.js
+.yarn/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
 .yarn/install-state.gz
 
-# testing
-coverage/
-
-# next.js
+# --- Build Outputs ---
 .next/
 out/
-build
-dist
-
-# production
+build/
+dist/
+dist-ssr/
 .next/standalone/
 .next/static/
 
-# environment
+# --- Environment & Secrets ---
 .env
 .env.local
 .env.*.local
+.env.development
+.env.production
+.env.test
+.env*.local
+!.env.example
+!.env.template
 
-# debug
+# --- IDE & Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs & Debug ---
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+*.log
+logs/
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# --- Coverage & Testing ---
+coverage/
+.nyc_output/
+*.test.tsx.snap
+*.test.ts.snap
+__snapshots__/
 
-# prisma
+# --- Temporary Files ---
+*.tmp
+*.temp
+*.cache
+.cache/
+.temp/
+.tmp/
+
+# --- Sovereign Specific ---
+*.rezbackup
+*.backup
+*.backup2
+.backup/
+.rezstack-snapshots/
+rezscan-reports/
+sovereign-connection-report.txt
+*.db
+*.db-journal
 prisma/*.db
 prisma/*.db-journal
 
-# OS files
-.DS_Store
-Thumbs.db
-
-# Sovereign specific
-sovereign-connection-report.txt
-*.backup
-*.bom.backup
-
-# Keep these for private repo
+# --- Keep these ---
 !.env.example
+!.gitkeep
+!.vscode/extensions.json
