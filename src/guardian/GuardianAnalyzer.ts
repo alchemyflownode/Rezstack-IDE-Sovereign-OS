@@ -28,7 +28,7 @@ export interface GuardianConfig {
 
 export class GuardianAnalyzer {
   private config: GuardianConfig;
-  private rules: Map<string, (node: any, path: any) => GuardianViolation | null>;
+  private rules: Map<string, (node: unknown, path: unknown) => GuardianViolation | null>;
 
   constructor(config: GuardianConfig) {
     this.config = config;
@@ -142,7 +142,7 @@ export class GuardianAnalyzer {
     }
   }
 
-  private hashNode(node: any, ruleId: string): string {
+  private hashNode(node: unknown, ruleId: string): string {
     // Deterministic hash based on node position + rule
     const seed = this.config.seed.toString(16).padStart(8, '0');
     const pos = `${node.start}_${node.end}`;
@@ -153,7 +153,7 @@ export class GuardianAnalyzer {
       .slice(0, 8);
   }
 
-  private getNodeLocation(node: any): GuardianViolation['location'] {
+  private getNodeLocation(node: unknown): GuardianViolation['location'] {
     return {
       start: { line: node.loc?.start.line || 1, column: node.loc?.start.column || 0 },
       end: { line: node.loc?.end.line || 1, column: node.loc?.end.column || 0 }

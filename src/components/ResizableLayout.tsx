@@ -1,7 +1,5 @@
-'use client';
-
-import React, { useState } from 'react';
-import Splitter from './Splitter';
+﻿'use client';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface ResizableLayoutProps {
   left: React.ReactNode;
@@ -9,58 +7,57 @@ interface ResizableLayoutProps {
   defaultLeftWidth?: number;
   minLeftWidth?: number;
   maxLeftWidth?: number;
-  className?: string;
 }
 
-const ResizableLayout: React.FC<ResizableLayoutProps> = ({
-  left,
-  right,
-  defaultLeftWidth = 25,
-  minLeftWidth = 20,
-  maxLeftWidth = 40,
-  className = '',
-}) => {
+export default function ResizableLayout({ 
+  left, 
+  right, 
+  defaultLeftWidth = 25, 
+  minLeftWidth = 15, 
+  maxLeftWidth = 50 
+}: ResizableLayoutProps) {
   const [leftWidth, setLeftWidth] = useState(defaultLeftWidth);
-  const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleDrag = (delta: number) => {
-    setLeftWidth(prev => {
-      const newWidth = prev + (delta / window.innerWidth) * 100;
-      return Math.min(Math.max(newWidth, minLeftWidth), maxLeftWidth);
-    });
-  };
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizing || !containerRef.current) return;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const newWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
+      setLeftWidth(Math.min(Math.max(newWidth, minLeftWidth), maxLeftWidth));
+    };
+    
+    const handleMouseUp = () => setIsResizing(false);
+    
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+    
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing, minLeftWidth, maxLeftWidth]);
 
   return (
-    <div className={`flex h-full w-full relative ${className}`}>
-      {/* Left Panel */}
+    <div ref={containerRef} className="flex h-full w-full">
       <div 
-        className="h-full overflow-auto"
-        style={{ width: `${leftWidth}%` }}
+        className="h-full overflow-auto border-r border-purple-500/20" 
+        style={{ width: leftWidth + '%' }}
       >
         {left}
       </div>
-
-      {/* Splitter */}
-      <Splitter 
-        axis="vertical"
-        onDrag={handleDrag}
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => setIsDragging(false)}
-      />
-
-      {/* Right Panel */}
+      
       <div 
-        className="flex-1 h-full overflow-auto"
-      >
+        className="w-1 bg-purple-500/20 hover:bg-purple-500/40 cursor-col-resize transition-colors flex-shrink-0" 
+        onMouseDown={() => setIsResizing(true)} 
+      />
+      
+      <div className="flex-1 h-full overflow-auto">
         {right}
       </div>
-
-      {/* Dragging overlay */}
-      {isDragging && (
-        <div className="fixed inset-0 z-50 cursor-col-resize" />
-      )}
     </div>
   );
-};
-
-export default ResizableLayout;
+}

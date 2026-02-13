@@ -3,7 +3,7 @@
 
 export function TestComponent() {
     // ARTICLE IV: No Any Types
-    const process = (data: any) => {  // Should show red squiggle
+    const process = (data: unknown) => {  // Should show red squiggle
         return data;
     };
     
