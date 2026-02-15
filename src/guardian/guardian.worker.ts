@@ -1,4 +1,4 @@
-﻿// 🦊 guardian.worker.ts — Runs analysis off-main-thread
+// 🦊 guardian.worker.ts — Runs analysis off-main-thread
 // No UI jank. Zero cloud calls. Pure sovereignty.
 
 import { GuardianAnalyzer, GuardianViolation, GuardianConfig } from './GuardianAnalyzer';

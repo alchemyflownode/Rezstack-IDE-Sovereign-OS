@@ -1,4 +1,4 @@
-﻿// 🦊 GUARDIAN ANALYZER — SOVEREIGN CONSTITUTIONAL ENFORCEMENT
+// 🦊 GUARDIAN ANALYZER — SOVEREIGN CONSTITUTIONAL ENFORCEMENT
 // Zero mocks. Zero illusions. Bitwise-verifiable AST analysis.
 // Articles enforced: I (Sovereignty), II (Determinism), III (Shallow Copies), IV (Explicit Contracts)
 

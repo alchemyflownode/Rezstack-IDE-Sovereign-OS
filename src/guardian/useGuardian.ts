@@ -1,4 +1,4 @@
-﻿// 🦊 useGuardian.ts — Real-time constitutional enforcement
+// 🦊 useGuardian.ts — Real-time constitutional enforcement
 // Integrates with Monaco Editor / textarea
 
 import { useState, useEffect, useCallback, useRef } from 'react';

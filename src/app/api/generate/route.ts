@@ -1,4 +1,4 @@
-﻿// src/app/api/generate/route.ts
+// src/app/api/generate/route.ts
 import { ExtractionPipeline } from '@/core/learning/ExtractionPipeline';
 import { SovereignEngine } from '@/services/sovereign-engine';
 import { NextRequest, NextResponse } from 'next/server';

@@ -1,4 +1,4 @@
-﻿// 🦊 GuardianAnalyzer.ts — Deterministic AST analysis
+// 🦊 GuardianAnalyzer.ts — Deterministic AST analysis
 // Zero entropy. Zero cloud. 100% sovereign.
 
 import * as babelParser from '@babel/parser';
