@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -31,19 +31,44 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
   // Fetch available models from Ollama
   useEffect(() => {
     const fetchModels = async () => {
-      try {
-        const response = await fetch('http://localhost:11434/api/tags');
+  try {
+    // Try to connect to Ollama
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+    
+    try {
+      const response = await fetch('http://localhost:11434/api/tags', {
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      
+      if (response.ok) {
         const data = await response.json();
         setModels(data.models || []);
-      } catch (error) {
-        console.error('Failed to fetch models:', error);
-      } finally {
-        setLoading(false);
+      } else {
+        throw new Error(`Ollama returned ${response.status}`);
       }
-    };
+    } catch (fetchError) {
+      clearTimeout(timeoutId);
+      throw fetchError;
+    }
+  } catch (error) {
+    console.warn('🦊 Ollama not running - using fallback models');
+    // Fallback to mock models for development
+    setModels([
+      { name: 'llama3.2:latest', size: '4.7 GB', modified: new Date().toISOString() },
+      { name: 'phi4:latest', size: '9.1 GB', modified: new Date().toISOString() },
+      { name: 'deepseek-coder:latest', size: '776 MB', modified: new Date().toISOString() },
+      { name: 'qwen2.5-coder:7b', size: '4.7 GB', modified: new Date().toISOString() },
+      { name: 'codellama:7b', size: '3.8 GB', modified: new Date().toISOString() },
+      { name: 'llama3.2:1b', size: '1.3 GB', modified: new Date().toISOString() },
+    ]);
+  } finally {
+    setLoading(false);
+  }
+};
 
     fetchModels();
-    // Refresh every 30 seconds
     const interval = setInterval(fetchModels, 30000);
     return () => clearInterval(interval);
   }, []);
@@ -303,3 +328,4 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
     </div>
   );
 }
+

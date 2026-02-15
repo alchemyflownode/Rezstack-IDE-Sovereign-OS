@@ -1,4 +1,8 @@
-'use client';
+﻿'use client';
+
+import { TerminalOutput } from './TerminalOutput';
+
+
 
 import React, { useState } from 'react';
 import { Terminal, Loader } from 'lucide-react';
@@ -162,6 +166,8 @@ export default function JARVISTerminal({
     </div>
   );
 }
+
+
 
 
 
