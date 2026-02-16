@@ -8,427 +8,189 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* RezStack Sovereign Theme */
+/* iOS-Inspired Premium Theme */
 :root {
-  --radius: 0.625rem;
-  --rez-purple: #8b5cf6;
-  --rez-cyan: #06b6d4;
-  --rez-orange: #f97316;
-  --rez-green: #22c55e;
-  --rez-bg-start: #0f0a1a;
-  --rez-bg-end: #1a0f2e;
+  --radius: 0.75rem; /* More rounded like iOS */
   
-  --background: #0f0a1a;
-  --foreground: #f8fafc;
-  --card: rgba(15, 10, 26, 0.8);
-  --card-foreground: #f8fafc;
-  --popover: rgba(26, 15, 46, 0.95);
-  --popover-foreground: #f8fafc;
+  /* iOS Dark Mode Colors */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: rgba(28, 28, 30, 0.8);
+  --card-foreground: #ffffff;
+  --popover: #1c1c1e;
+  --popover-foreground: #ffffff;
   --primary: #8b5cf6;
-  --primary-foreground: #f8fafc;
-  --secondary: rgba(139, 92, 246, 0.15);
-  --secondary-foreground: #c4b5fd;
-  --muted: rgba(139, 92, 246, 0.1);
-  --muted-foreground: #a1a1aa;
-  --accent: #06b6d4;
-  --accent-foreground: #f8fafc;
-  --destructive: #ef4444;
-  --border: rgba(139, 92, 246, 0.2);
-  --input: rgba(139, 92, 246, 0.15);
+  --primary-foreground: #ffffff;
+  --secondary: #2c2c2e;
+  --secondary-foreground: #8e8e93;
+  --muted: #1c1c1e;
+  --muted-foreground: #8e8e93;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --destructive: #ff453a;
+  --border: #38383a;
+  --input: #2c2c2e;
   --ring: #8b5cf6;
-  --chart-1: #8b5cf6;
-  --chart-2: #06b6d4;
-  --chart-3: #f97316;
-  --chart-4: #22c55e;
-  --chart-5: #a78bfa;
-  --sidebar: rgba(15, 10, 26, 0.9);
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #8b5cf6;
-  --sidebar-primary-foreground: #f8fafc;
-  --sidebar-accent: rgba(6, 182, 212, 0.15);
-  --sidebar-accent-foreground: #06b6d4;
-  --sidebar-border: rgba(139, 92, 246, 0.2);
-  --sidebar-ring: #8b5cf6;
 }
 
-.dark {
-  --background: #0f0a1a;
-  --foreground: #f8fafc;
-  --card: rgba(15, 10, 26, 0.8);
-  --card-foreground: #f8fafc;
-  --popover: rgba(26, 15, 46, 0.95);
-  --popover-foreground: #f8fafc;
-  --primary: #8b5cf6;
-  --primary-foreground: #f8fafc;
-  --secondary: rgba(139, 92, 246, 0.15);
-  --secondary-foreground: #c4b5fd;
-  --muted: rgba(139, 92, 246, 0.1);
-  --muted-foreground: #a1a1aa;
-  --accent: #06b6d4;
-  --accent-foreground: #f8fafc;
-  --destructive: #ef4444;
-  --border: rgba(139, 92, 246, 0.2);
-  --input: rgba(139, 92, 246, 0.15);
-  --ring: #8b5cf6;
-  --chart-1: #8b5cf6;
-  --chart-2: #06b6d4;
-  --chart-3: #f97316;
-  --chart-4: #22c55e;
-  --chart-5: #a78bfa;
-  --sidebar: rgba(15, 10, 26, 0.9);
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #8b5cf6;
-  --sidebar-primary-foreground: #f8fafc;
-  --sidebar-accent: rgba(6, 182, 212, 0.15);
-  --sidebar-accent-foreground: #06b6d4;
-  --sidebar-border: rgba(139, 92, 246, 0.2);
-  --sidebar-ring: #8b5cf6;
+/* iOS-style blur effects */
+.ios-blur {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(135deg, var(--rez-bg-start) 0%, var(--rez-bg-end) 100%);
-    min-height: 100vh;
-    background-attachment: fixed;
-  }
+.ios-card {
+  background: rgba(28, 28, 30, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
 }
 
-/* Glass morphism effect */
-.glass {
-  background: rgba(15, 10, 26, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.glass-card {
-  background: rgba(15, 10, 26, 0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(139, 92, 246, 0.15);
-}
-
-/* Purple glow effects */
-.glow-purple {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3),
-              0 0 40px rgba(139, 92, 246, 0.1);
-}
-
-.glow-purple-intense {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5),
-              0 0 60px rgba(139, 92, 246, 0.2);
-}
-
-.text-glow-purple {
-  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5),
-               0 0 20px rgba(139, 92, 246, 0.3);
-}
-
-/* Cyan glow effects */
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3),
-              0 0 40px rgba(6, 182, 212, 0.1);
-}
-
-.text-glow-cyan {
-  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5),
-               0 0 20px rgba(6, 182, 212, 0.3);
-}
-
-/* Gradient button */
-.btn-gradient {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
-  transition: all 0.3s ease;
-}
-
-.btn-gradient:hover {
-  box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
-  transform: translateY(-1px);
-}
-
-/* Category pills */
-.category-pill {
-  transition: all 0.2s ease;
-}
-
-.category-pill.active {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4) 0%, rgba(139, 92, 246, 0.2) 100%);
-  border-color: rgba(139, 92, 246, 0.5);
-}
-
-/* Progress bar custom */
-.progress-cyan {
-  background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 100%);
-}
-
-.progress-purple {
-  background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%);
-}
-
-/* Terminal cursor blink animation */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.cursor-blink {
-  animation: blink 1s infinite;
-}
-
-/* Smooth transitions */
-.transition-smooth {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Custom scrollbar */
+/* iOS-style scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 10, 26, 0.5);
-  border-radius: 4px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.4);
-  border-radius: 4px;
+  background: rgba(120, 120, 128, 0.5);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.6);
+  background: rgba(120, 120, 128, 0.8);
 }
 
-/* Card hover effects */
-.card-hover {
-  transition: all 0.3s ease;
+/* iOS-style animations */
+@keyframes ios-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
-  border-color: rgba(139, 92, 246, 0.4);
+.ios-pulse {
+  animation: ios-pulse 2s infinite;
 }
 
-/* Badge styles */
-.badge-success {
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+/* iOS-style focus rings */
+*:focus-visible {
+  outline: none;
+  ring: 2px solid #8b5cf6;
+  ring-offset: 2px;
 }
 
-.badge-warning {
-  background: rgba(249, 115, 22, 0.2);
-  color: #f97316;
-  border: 1px solid rgba(249, 115, 22, 0.3);
+/* iOS-style dividers */
+.ios-divider {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  height: 1px;
 }
 
-.badge-cyan {
-  background: rgba(6, 182, 212, 0.2);
-  color: #06b6d4;
-  border: 1px solid rgba(6, 182, 212, 0.3);
+/* iOS-style header */
+.ios-header {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.badge-purple {
-  background: rgba(139, 92, 246, 0.2);
-  color: #c4b5fd;
-  border: 1px solid rgba(139, 92, 246, 0.3);
+/* iOS-style button */
+.ios-button {
+  background: #8b5cf6;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.2s;
 }
 
-/* Prompt card styles */
-.prompt-card {
-  transition: all 0.3s ease;
-  cursor: pointer;
+.ios-button:hover {
+  opacity: 0.8;
+  transform: scale(0.98);
 }
 
-.prompt-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
-  border-color: rgba(139, 92, 246, 0.5);
+.ios-button:active {
+  transform: scale(0.96);
 }
 
-/* Code block styling */
-.code-block {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+/* iOS-style input */
+.ios-input {
+  background: #1c1c1e;
+  border: 1px solid #2c2c2e;
+  border-radius: 10px;
+  padding: 10px 16px;
+  color: white;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.ios-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+/* iOS-style message bubbles */
+.ios-message-user {
+  background: #8b5cf6;
+  border-radius: 18px;
+  border-bottom-right-radius: 4px;
+  padding: 10px 16px;
+  max-width: 80%;
+  align-self: flex-end;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+.ios-message-assistant {
+  background: #2c2c2e;
+  border-radius: 18px;
+  border-bottom-left-radius: 4px;
+  padding: 10px 16px;
+  max-width: 80%;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* iOS-style tooltip */
+.ios-tooltip {
+  background: #1c1c1e;
   border-radius: 8px;
-  font-family: var(--font-geist-mono), monospace;
+  padding: 8px 12px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid #2c2c2e;
 }
 
-/* Terminal styling */
-.terminal-output {
-  font-family: var(--font-geist-mono), monospace;
-  color: #22d3ee;
+/* iOS-style badge */
+.ios-badge {
+  background: #2c2c2e;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8e8e93;
 }
 
-.terminal-prompt {
-  color: #f97316;
+.ios-badge-active {
+  background: #8b5cf6;
+  color: white;
 }
 
-/* Expandable section */
-.expandable-header {
-  cursor: pointer;
-  transition: background 0.2s ease;
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.1s;
 }
 
-.expandable-header:hover {
-  background: rgba(139, 92, 246, 0.1);
+/* iOS-style safe area */
+.ios-safe-top {
+  padding-top: env(safe-area-inset-top);
 }
 
-/* Status indicators */
-.status-stable {
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.15);
-}
-
-.status-warning {
-  color: #f97316;
-  background: rgba(249, 115, 22, 0.15);
-}
-
-/* Input styling */
-.input-glow:focus {
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3),
-              0 0 20px rgba(139, 92, 246, 0.2);
-}
-
-/* Fade in animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out;
-}
-
-/* Pulse animation for active elements */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.3); }
-  50% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.5); }
-}
-
-.pulse-glow {
-  animation: pulse-glow 2s infinite;
-}
-
-/* ============================================================================
-   SOVEREIGN SPLITTER - RESIZABLE PANELS
-   ============================================================================ */
-
-/* Splitter base styles */
-.splitter {
-  position: relative;
-  transition: all 0.2s ease;
-}
-
-/* Splitter handle animations */
-@keyframes pulse-glow-splitter {
-  0%, 100% { 
-    box-shadow: 0 0 5px rgba(139, 92, 246, 0.3), 0 0 10px rgba(6, 182, 212, 0.2);
-    background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), rgba(6, 182, 212, 0.3));
-  }
-  50% { 
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6), 0 0 25px rgba(6, 182, 212, 0.4);
-    background: linear-gradient(90deg, rgba(139, 92, 246, 0.6), rgba(6, 182, 212, 0.6));
-  }
-}
-
-.splitter:hover .splitter-handle {
-  animation: pulse-glow-splitter 2s infinite;
-}
-
-/* Splitter themes */
-.splitter.vertical .splitter-handle {
-  width: 6px;
-  height: 100%;
-}
-
-.splitter.horizontal .splitter-handle {
-  height: 6px;
-  width: 100%;
-}
-
-/* Glow intensity variants */
-.shadow-glow-purple-low {
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
-}
-
-.shadow-glow-purple {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
-}
-
-.shadow-glow-purple-intense {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.2);
-}
-
-.shadow-glow-cyan {
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-}
-
-/* Custom cursors */
-.cursor-col-resize {
-  cursor: col-resize;
-}
-
-.cursor-row-resize {
-  cursor: row-resize;
-}
-
-/* Splitter active state */
-.splitter:active .splitter-handle {
-  transform: scale(1.1);
-  transition: transform 0.1s ease;
-}
-
-/* Dark mode enhancements */
-.dark .splitter-handle {
-  background: linear-gradient(90deg, rgba(139, 92, 246, 0.5), rgba(6, 182, 212, 0.5));
-}
-
-/* 🔴 FORCE FILE EXPLORER VISIBLE */
-[class*="WorkspaceExplorer"] {
-  display: block !important;
-  width: 350px !important;
-  min-width: 350px !important;
-  border-left: 4px solid #ff4444 !important;
-  background: #1a1a1a !important;
+.ios-safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }

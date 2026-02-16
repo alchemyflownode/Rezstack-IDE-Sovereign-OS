@@ -108,9 +108,9 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
   const otherModels = models.filter(m => getModelCategory(m.name) === 'all');
 
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+    <div data-testid="modelselector-main"  className="space-y-2">
+      <div data-testid="modelselector-main"  className="flex items-center justify-between">
+        <div data-testid="modelselector-main"  className="flex items-center gap-2">
           <Brain className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium">Neural Engine</span>
         </div>
@@ -126,7 +126,7 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
       </div>
 
       {/* Category Pills */}
-      <div className="flex flex-wrap gap-1 pb-1">
+      <div data-testid="modelselector-main"  className="flex flex-wrap gap-1 pb-1">
         <button
           onClick={() => setCategory('all')}
           className={`px-2 py-1 text-xs rounded-full transition-all ${
@@ -196,14 +196,14 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
           {/* Sovereign Models */}
           {filteredModels.filter(m => getModelCategory(m.name) === 'sovereign').length > 0 && (
             <>
-              <div className="px-2 py-1.5 text-xs font-semibold text-purple-400 bg-purple-500/10">
+              <div data-testid="modelselector-main"  className="px-2 py-1.5 text-xs font-semibold text-purple-400 bg-purple-500/10">
                 🏛️ SOVEREIGN COUNCIL
               </div>
               {filteredModels
                 .filter(m => getModelCategory(m.name) === 'sovereign')
                 .map(model => (
                   <SelectItem key={model.name} value={model.name} className="focus:bg-purple-500/20">
-                    <div className="flex items-center gap-2">
+                    <div data-testid="modelselector-main"  className="flex items-center gap-2">
                       {getModelIcon(model.name)}
                       <span className="font-mono text-sm">{model.name}</span>
                       <span className="text-xs text-muted-foreground">
@@ -219,14 +219,14 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
           {/* Coder Models */}
           {filteredModels.filter(m => getModelCategory(m.name) === 'coder').length > 0 && (
             <>
-              <div className="px-2 py-1.5 text-xs font-semibold text-cyan-400 bg-cyan-500/10 mt-1">
+              <div data-testid="modelselector-main"  className="px-2 py-1.5 text-xs font-semibold text-cyan-400 bg-cyan-500/10 mt-1">
                 🤖 CODE ARCHITECTS
               </div>
               {filteredModels
                 .filter(m => getModelCategory(m.name) === 'coder')
                 .map(model => (
                   <SelectItem key={model.name} value={model.name} className="focus:bg-cyan-500/20">
-                    <div className="flex items-center gap-2">
+                    <div data-testid="modelselector-main"  className="flex items-center gap-2">
                       {getModelIcon(model.name)}
                       <span className="font-mono text-sm">{model.name}</span>
                       <span className="text-xs text-muted-foreground">
@@ -242,14 +242,14 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
           {/* Vision Models */}
           {filteredModels.filter(m => getModelCategory(m.name) === 'vision').length > 0 && (
             <>
-              <div className="px-2 py-1.5 text-xs font-semibold text-green-400 bg-green-500/10 mt-1">
+              <div data-testid="modelselector-main"  className="px-2 py-1.5 text-xs font-semibold text-green-400 bg-green-500/10 mt-1">
                 👁️ VISION INTELLECT
               </div>
               {filteredModels
                 .filter(m => getModelCategory(m.name) === 'vision')
                 .map(model => (
                   <SelectItem key={model.name} value={model.name} className="focus:bg-green-500/20">
-                    <div className="flex items-center gap-2">
+                    <div data-testid="modelselector-main"  className="flex items-center gap-2">
                       {getModelIcon(model.name)}
                       <span className="font-mono text-sm">{model.name}</span>
                       <span className="text-xs text-muted-foreground">
@@ -265,14 +265,14 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
           {/* Fast/Small Models */}
           {filteredModels.filter(m => getModelCategory(m.name) === 'small').length > 0 && (
             <>
-              <div className="px-2 py-1.5 text-xs font-semibold text-yellow-400 bg-yellow-500/10 mt-1">
+              <div data-testid="modelselector-main"  className="px-2 py-1.5 text-xs font-semibold text-yellow-400 bg-yellow-500/10 mt-1">
                 ⚡ LIGHTNING FAST
               </div>
               {filteredModels
                 .filter(m => getModelCategory(m.name) === 'small')
                 .map(model => (
                   <SelectItem key={model.name} value={model.name} className="focus:bg-yellow-500/20">
-                    <div className="flex items-center gap-2">
+                    <div data-testid="modelselector-main"  className="flex items-center gap-2">
                       {getModelIcon(model.name)}
                       <span className="font-mono text-sm">{model.name}</span>
                       <span className="text-xs text-muted-foreground">
@@ -288,14 +288,14 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
           {/* Other Models */}
           {filteredModels.filter(m => getModelCategory(m.name) === 'all').length > 0 && (
             <>
-              <div className="px-2 py-1.5 text-xs font-semibold text-primary/70 bg-primary/10 mt-1">
+              <div data-testid="modelselector-main"  className="px-2 py-1.5 text-xs font-semibold text-primary/70 bg-primary/10 mt-1">
                 🧠 GENERAL INTELLIGENCE
               </div>
               {filteredModels
                 .filter(m => getModelCategory(m.name) === 'all')
                 .map(model => (
                   <SelectItem key={model.name} value={model.name} className="focus:bg-primary/20">
-                    <div className="flex items-center gap-2">
+                    <div data-testid="modelselector-main"  className="flex items-center gap-2">
                       {getModelIcon(model.name)}
                       <span className="font-mono text-sm">{model.name}</span>
                       <span className="text-xs text-muted-foreground">
@@ -309,7 +309,7 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
           )}
 
           {filteredModels.length === 0 && !loading && (
-            <div className="px-2 py-4 text-center text-sm text-muted-foreground">
+            <div data-testid="modelselector-main"  className="px-2 py-4 text-center text-sm text-muted-foreground">
               No models found. Is Ollama running?
             </div>
           )}
@@ -318,7 +318,7 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
 
       {/* Current Model Badge */}
       {currentModel && (
-        <div className="flex items-center gap-1 pt-1">
+        <div data-testid="modelselector-main"  className="flex items-center gap-1 pt-1">
           <Badge variant="outline" className="badge-purple text-[10px] px-1.5 py-0">
             {getModelIcon(currentModel)}
             <span className="ml-1">{currentModel}</span>
@@ -328,4 +328,5 @@ export function ModelSelector({ currentModel, onModelChange }: ModelSelectorProp
     </div>
   );
 }
+
 
