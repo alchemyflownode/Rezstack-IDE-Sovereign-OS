@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface FileNode {
   name: string;
@@ -31,15 +31,42 @@ export const FileTree: React.FC<FileTreeProps> = ({ workspace = '.' }) => {
   const loadFileTree = async (path: string) => {
     setLoading(true);
     try {
-      const response = await fetch('/api/workspace/files', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ workspace: path })
-      });
+      // Get memories from the API (GET request, no body)
+      const response = await fetch('http://localhost:8003/memories');
       const data = await response.json();
-      setTree(data.tree || []);
+      
+      // Transform memories into file tree format
+      const memories = data.memories || [];
+      const fileTree: FileNode[] = memories.map((memory: any, index: number) => ({
+        name: memory.content?.substring(0, 30) + (memory.content?.length > 30 ? '...' : '') || `Memory ${index + 1}`,
+        path: `/memories/${memory.id || index}`,
+        type: 'file',
+        children: []
+      }));
+
+      // Add a root directory for the workspace
+      const rootNode: FileNode = {
+        name: path === '.' ? 'workspace' : path,
+        path: '/workspace',
+        type: 'directory',
+        children: fileTree.length > 0 ? fileTree : [{ 
+          name: 'No memories yet', 
+          path: '/empty', 
+          type: 'file',
+          children: []
+        }]
+      };
+
+      setTree([rootNode]);
     } catch (error) {
       console.error('Failed to load file tree:', error);
+      // Show error state
+      setTree([{
+        name: 'Error loading memories',
+        path: '/error',
+        type: 'directory',
+        children: []
+      }]);
     }
     setLoading(false);
   };
