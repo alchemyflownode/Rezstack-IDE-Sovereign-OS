@@ -1,0 +1,43 @@
+﻿/* sovereign.css */
+:root {
+  --bg-base: #0a0a0a;
+  --bg-surface: #121212;
+  --bg-surface-hover: #1a1a1a;
+  --accent-primary: #8b5cf6;
+  --accent-success: #10b981;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --border-regular: rgba(255,255,255,0.1);
+  --border-accent: rgba(139,92,246,0.3);
+  --radius-container: 24px;
+  --radius-element: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --text-title: 1.5rem;
+  --text-caption: 0.875rem;
+}
+body { background: var(--bg-base); color: var(--text-primary); font-family: system-ui, sans-serif; margin: 0; }
+.container { max-width: 1600px; margin: 0 auto; padding: 0 72px; }
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.sovereign-card { background: var(--bg-surface); border-radius: var(--radius-container); border: 1px solid var(--border-regular); padding: var(--space-6); transition: border-color 200ms ease-out; }
+.sovereign-card:hover { border-color: var(--border-accent); box-shadow: 0 20px 40px -10px rgba(139,92,246,0.2); }
+/* Add to src/styles/sovereign.css */
+.resize-handle:hover {
+  background: var(--accent-primary) !important;
+  box-shadow: 0 0 8px var(--accent-primary);
+}
+
+.resize-handle:active {
+  background: var(--accent-primary) !important;
+  width: 6px !important;
+}
+/* Add to src/styles/sovereign.css */
+.resize-handle:hover {
+  background: var(--accent-primary) !important;
+  box-shadow: 0 0 8px var(--accent-primary);
+}
+
+.resize-handle:active {
+  background: var(--accent-primary) !important;
+  width: 6px !important;
+}

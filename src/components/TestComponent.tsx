@@ -1,0 +1,1 @@
+'use client';export default function TestComponent() {  return (    <div style={{      position: 'fixed',      top: '10px',      left: '10px',      zIndex: 9999,      background: 'green',      color: 'white',      padding: '20px',      borderRadius: '5px',      fontFamily: 'monospace'    }}>       UI IS RENDERING!    </div>  );}

@@ -1,0 +1,111 @@
+﻿export class MCPClient {
+  private static instance: MCPClient;
+  
+  private endpoints = {
+    bridge: 'http://localhost:8001',
+    memory: 'http://localhost:8003',
+    search: 'http://localhost:8080',
+    browser: 'http://localhost:8006',
+    swarm: 'http://localhost:8000'
+  };
+
+  static getInstance(): MCPClient {
+    if (!MCPClient.instance) {
+      MCPClient.instance = new MCPClient();
+    }
+    return MCPClient.instance;
+  }
+
+  async call(tool: string, params: any): Promise<any> {
+    console.log(`Calling tool: ${tool}`, params);
+
+    try {
+      // Web search via SearXNG
+      if (tool === 'web_search') {
+        const url = `${this.endpoints.search}/search?q=${encodeURIComponent(params.query)}&format=json`;
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        return {
+          results: (data.results || []).map((r: any) => ({
+            title: r.title || 'Untitled',
+            url: r.url || '#',
+            snippet: r.content || r.snippet || 'No description available'
+          }))
+        };
+      }
+
+      // Get agents from Bridge API
+      if (tool === 'get_agents') {
+        const response = await fetch(`${this.endpoints.bridge}/justices`);
+        return await response.json();
+      }
+
+      // Get memories from Memory API
+      if (tool === 'get_memories') {
+        const response = await fetch(`${this.endpoints.memory}/memories`);
+        return await response.json();
+      }
+
+      // Get crystals from Memory API
+      if (tool === 'get_crystals') {
+        const response = await fetch(`${this.endpoints.memory}/crystals`);
+        return await response.json();
+      }
+
+      // Deep research via Browser API
+      if (tool === 'deep_research') {
+        // First get search results
+        const searchResults = await this.call('web_search', { query: params.topic });
+        
+        return {
+          topic: params.topic,
+          summary: `Found ${searchResults.results?.length || 0} sources about "${params.topic}"`,
+          sources: searchResults.results?.slice(0, 3) || []
+        };
+      }
+
+      // Check status of all services
+      if (tool === 'check_status') {
+        return await this.checkStatus();
+      }
+
+      return { 
+        success: false, 
+        message: `Unknown tool: ${tool}` 
+      };
+
+    } catch (error) {
+      console.error('MCP Call Failed:', error);
+      return { 
+        error: true, 
+        message: "Connection failed. Check if services are running."
+      };
+    }
+  }
+
+  async checkStatus(): Promise<Record<string, boolean>> {
+    const status: Record<string, boolean> = {};
+    
+    const checks = [
+      { name: 'bridge', url: `${this.endpoints.bridge}/health` },
+      { name: 'memory', url: `${this.endpoints.memory}/health` },
+      { name: 'search', url: this.endpoints.search },
+      { name: 'browser', url: `${this.endpoints.browser}/health` },
+      { name: 'swarm', url: `${this.endpoints.swarm}/health` }
+    ];
+
+    for (const check of checks) {
+      try {
+        const response = await fetch(check.url);
+        status[check.name] = response.ok;
+      } catch {
+        status[check.name] = false;
+      }
+    }
+
+    return status;
+  }
+}
+
+export const mcpClient = MCPClient.getInstance();

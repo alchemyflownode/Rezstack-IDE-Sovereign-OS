@@ -1,0 +1,1 @@
+// src/services/types.tsexport interface AIService {  generate(prompt: string, options?: unknown): Promise<string>;  [key: string]: unknown;}export interface GenerationOptions {  maxTokens?: number;  temperature?: number;  model?: string;}

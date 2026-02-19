@@ -1,0 +1,109 @@
+﻿/* src/styles/macos.css */
+
+:root {
+  /* 1. THE PALETTE (Sonoma Light/Dark Mode) */
+  --background-base: rgba(246, 246, 246, 0.85); /* Milky White */
+  --background-sidebar: rgba(240, 240, 240, 0.8);
+  --background-material: rgba(255, 255, 255, 0.7); /* The "Glass" */
+  
+  /* Dark Mode Overrides (Optional - currently set to Light) */
+  /* --background-base: rgba(40, 40, 40, 0.9); */
+  /* --background-material: rgba(50, 50, 50, 0.7); */
+
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --accent-blue: #007aff;
+  --accent-purple: #bf5af2;
+  --accent-pink: #ff375f;
+  --accent-green: #30d158;
+  
+  /* 2. THE GEOMETRY (Apple Rounding) */
+  --radius-small: 6px;
+  --radius-medium: 12px;
+  --radius-large: 18px; /* The "Squircle" */
+  
+  /* 3. THE EFFECTS (Depth) */
+  --shadow-window: 0 22px 70px 4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+  --blur-amount: 40px; /* Heavy blur for that frosted look */
+}
+
+/* GLOBAL RESET */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  background: url('https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed; /* Beautiful default wallpaper */
+  background-size: cover;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+/* THE "MATERIAL" CLASS (The core of the look) */
+.glass-panel {
+  background: var(--background-material);
+  backdrop-filter: blur(var(--blur-amount)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur-amount)) saturate(180%);
+  border-radius: var(--radius-large);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-window);
+  transition: all 0.2s ease-in-out;
+}
+
+/* SIDEBAR STYLE (Finder/Preferences style) */
+.sidebar-mac {
+  background: var(--background-sidebar);
+  backdrop-filter: blur(var(--blur-amount));
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+}
+
+/* BUTTON STYLE */
+.btn-mac {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: var(--radius-small);
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.btn-mac:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.btn-mac.primary {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.btn-mac.primary:hover {
+  background: #006ae6;
+}
+
+/* INPUT STYLE */
+.input-mac {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: var(--radius-small);
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.input-mac:focus {
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.4);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}

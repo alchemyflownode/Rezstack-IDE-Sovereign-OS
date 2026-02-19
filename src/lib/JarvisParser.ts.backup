@@ -1,0 +1,137 @@
+﻿// src/lib/JarvisParser.ts
+import { MatterPhase } from '@/hooks/useQuantumState';
+
+export interface CommandIntent {
+  type: 'TRANSMUTE' | 'SWARM' | 'QUERY' | 'REJECTED';
+  action: string;
+  payload?: any;
+  confidence: number;
+  explanation?: string;
+}
+
+const VOCABULARY = {
+  power: ['overclock', 'plasma', 'maximum', 'chaotic', 'intense', 'power', 'performance', 'gaming', 'render'],
+  stability: ['lock', 'solid', 'stable', 'grounded', 'minimize', 'quiet', 'battery', 'efficient'],
+  balance: ['reset', 'liquid', 'default', 'standard', 'flow', 'normal', 'balanced'],
+  clean: ['purge', 'clean', 'wipe', 'entropy', 'cache', 'temp', 'garbage', 'junk'],
+  priority: ['render', 'gpu', 'priority', 'focus', 'concentrate', 'dedicate'],
+  status: ['status', 'health', 'how', 'what', 'running', 'performance', 'temperature', 'stats'],
+  help: ['help', 'what can', 'commands', 'guide', 'assist']
+};
+
+export const JarvisParser = {
+  parse: (input: string): CommandIntent => {
+    const raw = input.toLowerCase().trim();
+    const words = raw.split(/\s+/);
+    
+    const scores = {
+      power: words.filter(w => VOCABULARY.power.some(term => w.includes(term))).length / words.length,
+      stability: words.filter(w => VOCABULARY.stability.some(term => w.includes(term))).length / words.length,
+      balance: words.filter(w => VOCABULARY.balance.some(term => w.includes(term))).length / words.length,
+      clean: words.filter(w => VOCABULARY.clean.some(term => w.includes(term))).length / words.length,
+      priority: words.filter(w => VOCABULARY.priority.some(term => w.includes(term))).length / words.length,
+      status: words.filter(w => VOCABULARY.status.some(term => w.includes(term))).length / words.length,
+      help: words.filter(w => VOCABULARY.help.some(term => w.includes(term))).length / words.length
+    };
+
+    const maxScore = Math.max(...Object.values(scores));
+
+    if (scores.power > 0.2 || raw.match(/(overclock|plasma|maximum|chaotic)/)) {
+      return {
+        type: 'TRANSMUTE',
+        action: 'PHASE_SHIFT',
+        payload: 'PLASMA' as MatterPhase,
+        confidence: scores.power,
+        explanation: "Pushing to plasma â€“ the interface will become more energetic. Fans may spin up."
+      };
+    }
+    
+    if (scores.stability > 0.2 || raw.match(/(lock|solid|stable|grounded)/)) {
+      return {
+        type: 'TRANSMUTE',
+        action: 'PHASE_SHIFT',
+        payload: 'SOLID' as MatterPhase,
+        confidence: scores.stability,
+        explanation: "Locking to solid mode. Power savings prioritized over performance."
+      };
+    }
+
+    if (scores.balance > 0.2 || raw.match(/(reset|liquid|default|standard)/)) {
+      return {
+        type: 'TRANSMUTE',
+        action: 'PHASE_SHIFT',
+        payload: 'LIQUID' as MatterPhase,
+        confidence: scores.balance,
+        explanation: "Returning to balanced state. Everything's in flow."
+      };
+    }
+
+    if (scores.clean > 0.2 || raw.match(/(purge|clean|wipe|entropy)/)) {
+      return {
+        type: 'SWARM',
+        action: 'PURGE_ENTROPY',
+        confidence: scores.clean,
+        explanation: `Scanning for cleanable entropy. ${scores.clean > 0.5 ? 'Found significant cache buildup.' : 'Looking for temporary files.'}`
+      };
+    }
+
+    if (scores.priority > 0.2 || raw.match(/(render|gpu|priority|focus)/)) {
+      return {
+        type: 'SWARM',
+        action: 'RESOURCE_ALCHEMY',
+        confidence: scores.priority,
+        explanation: "Redirecting resources to GPU. Nonâ€‘essential background tasks will be paused."
+      };
+    }
+
+    if (scores.status > 0.2 || raw.match(/(status|health|how|what)/)) {
+      return {
+        type: 'QUERY',
+        action: 'SYSTEM_STATUS',
+        confidence: scores.status,
+        explanation: "Gathering telemetry... one moment."
+      };
+    }
+
+    if (scores.help > 0.2 || raw.match(/(help|commands|guide)/)) {
+      return {
+        type: 'QUERY',
+        action: 'SHOW_HELP',
+        confidence: scores.help,
+        explanation: "I can help with: power, stability, cleaning, priority, or status queries."
+      };
+    }
+
+    return {
+      type: 'REJECTED',
+      action: 'AMBIGUOUS_INTENT',
+      confidence: maxScore,
+      explanation: "I'm not quite sure what you're asking. Try: 'power mode', 'clean system', or 'status'."
+    };
+  },
+
+  getResponse: (intent: CommandIntent): string => {
+    if (intent.type === 'REJECTED') {
+      return `ðŸ¦Š *ears perk up* "${intent.explanation}"`;
+    }
+
+    const responses = {
+      TRANSMUTE: {
+        PLASMA: "ðŸ¦Š *fur crackles with energy* Pushing to plasma. Your machine will feel alive. Hold on.",
+        SOLID: "ðŸ¦Š *settles down* Locked to solid. Efficiency over chaos. Good choice.",
+        LIQUID: "ðŸ¦Š *flows smoothly* Returning to balanced. Everything in its right place."
+      },
+      SWARM: {
+        PURGE_ENTROPY: "ðŸ¦Š *sniffs around* Found some digital dust. Let me clean that up.",
+        RESOURCE_ALCHEMY: "ðŸ¦Š *eyes gleam* Focusing power where you need it. GPU priority set."
+      },
+      QUERY: {
+        SYSTEM_STATUS: "ðŸ¦Š *checks vitals* One moment while I gather telemetry...",
+        SHOW_HELP: "ðŸ¦Š *pads over* Here's what I can do: power, stable, clean, focus, or just ask how I'm doing."
+      }
+    };
+
+    return responses[intent.type]?.[intent.payload || intent.action] || 
+           `ðŸ¦Š *taps console* ${intent.explanation || "Processing that now."}`;
+  }
+};
